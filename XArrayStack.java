@@ -21,8 +21,7 @@ public class XArrayStack<E> implements Iterable {
 	public E pop() {
 		if(isEmpty()) throw new EmptyStackException();
 		E e = eles[--top];
-		eles[top] = null; //avoid loitering
-		if(top >= 0 && top == eles.length / 4) {
+		if(top < eles.length / 4) {
 			resize(eles.length / 2);
 		}
 		return e;
@@ -47,13 +46,17 @@ public class XArrayStack<E> implements Iterable {
 		return top;
 	}
 	//iterator
+	//support concurrent
 	public Iterator<E> iterator() {
 		return new Iterator<E>(){
 			private int index = 0;
+			private int count = top; 
 			public boolean hasNext() {
+				if(count != top) throw new ConcurrentModificationException();
 				return index < top;
 			}
 			public E next() {
+				if(count != top) throw new ConcurrentModificationException();
 				return eles[index++];
 			}
 			public void remove() {
@@ -62,5 +65,6 @@ public class XArrayStack<E> implements Iterable {
 		};
 	}
 	public static void main(String[] args) {
+	
 	}	
 }
