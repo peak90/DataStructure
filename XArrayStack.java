@@ -21,7 +21,7 @@ public class XArrayStack<E> implements Iterable {
 	public E pop() {
 		if(isEmpty()) throw new EmptyStackException();
 		E e = eles[--top];
-		if(top < eles.length / 4) {
+		if(top >= 0 && top == eles.length / 4) {
 			resize(eles.length / 2);
 		}
 		return e;
