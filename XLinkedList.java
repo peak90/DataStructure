@@ -49,7 +49,8 @@ public class XLinkedList<E> implements Iterable {
 	//remove an element
 	private void remove(Node<E> node) {
 		if(node == head) {
-			head = tail = null;
+			head = head.next;
+			if(head != null) head.pre = null;
 		} else if(node == tail) {
 			tail = tail.pre;
 			tail.next = null;
@@ -93,5 +94,14 @@ public class XLinkedList<E> implements Iterable {
 		};
 	}
 	public static void main(String[] args) {
+		XLinkedList<String> ls = new XLinkedList<String>();
+		ls.add("hello");
+		ls.add("word");
+		ls.add("xx");
+		ls.remove("hello");
+		Iterator<String> it = ls.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next());
+		}
 	}
 }
