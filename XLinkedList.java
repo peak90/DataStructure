@@ -84,6 +84,7 @@ public class XLinkedList<E> implements Iterable {
 				return p != null;
 			}
 			public E next() {
+				if(!hasNext()) throw new NoSuchElementException();
 				E e = p.ele;
 				p = p.next;
 				return e;

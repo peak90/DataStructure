@@ -70,6 +70,7 @@ public class XRandomQueue<E> implements Iterable{
 			return i < elescopy.length;
 		}	
 		public E next() {
+			if(!hasNext()) throw new NoSuchElementException();
 			return elescopy[i++];
 		}
 		public void remove() {

@@ -71,6 +71,7 @@ public class XArrayQueue<E> {
 				return i < num;
 			}
 			public E next() {
+				if(!hasNext()) throw new NoSuchElementException();
 				E e = eles[h];
 				h = (h + 1) % eles.length;
 				i++;

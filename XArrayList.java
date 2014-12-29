@@ -77,6 +77,7 @@ public class XArrayList<E> implements Iterable {
 			return index < top;
 		}
 		public E next() {
+			if(!hasNext()) throw new NoSuchElementException();
 			return eles[index++];
 		}
 		public void remove() {

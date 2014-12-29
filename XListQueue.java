@@ -54,6 +54,7 @@ public class XListQueue<E> implements Iterable {
 				return h != null;
 			}
 			public E next() {
+				if(!hasNext()) throw new NoSuchElementException();
 				E e = h.ele;
 				h = h.next;
 				return e;
